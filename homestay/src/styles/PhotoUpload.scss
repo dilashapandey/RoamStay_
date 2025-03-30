@@ -1,0 +1,116 @@
+@import "./variables.scss";
+@import "./breakpoints.scss";
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+
+  label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed $grey;
+    border-radius: 15px;
+    padding: 30px 20px;
+    min-height: 300px;
+    transition: all 0.3s ease;
+    background: white;
+
+    &:hover {
+      border-color: $pinkred;
+      background-color: rgba($pinkred, 0.05);
+      transform: translateY(-2px);
+    }
+
+    &.alone {
+      grid-column: 1 / -1;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .icon {
+      font-size: 70px;
+      color: $pinkred;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover .icon {
+      transform: scale(1.1);
+    }
+
+    p {
+      color: $darkgrey;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+
+  .photo {
+    position: relative;
+
+    border-radius: 15px;
+    overflow: hidden;
+    @include shadow;
+    transition: all 0.3s ease;
+    background: white;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+      .photo_removebutton {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .photo_uploadedimages {
+        transform: scale(1.05);
+      }
+    }
+
+    &_uploadedimages {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &_removebutton {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      height: 45px;
+      width: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      color: $pinkred;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+
+      @include shadow;
+
+      &:hover {
+        transform: scale(1.1);
+        background: rgba($pinkred, 0.05);
+        color: $pinkred;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
